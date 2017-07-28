@@ -4,7 +4,7 @@ from urllib.request import urlopen
 import time, datetime, random
 
 class check_yodobashi:
-    url = "http://www.yodobashi.com/product/xxxxxxxxxxxxxxxxxx/"
+    url = "http://www.yod******.com/product/xxxxxxxxxxxxxxxxxx/"
     
     while True:
         now = datetime.datetime.today()
@@ -19,7 +19,9 @@ class check_yodobashi:
         if deny == True:
             print('アクセス制限中')
             time.sleep(30)
+            # 引っかかったらこの間にブラウザで画像認証を済ませるというイメージ
             continue
+            #break #状況に応じて
         
         wait = random.randint(10,20)
         if canbuy == 1:
