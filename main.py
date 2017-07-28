@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 from urllib.request import urlopen
-import time, datetime
+import time, datetime, random
 
 class check_yodobashi:
     url = "http://www.yodobashi.com/product/xxxxxxxxxxxxxxxxxx/"
@@ -14,7 +14,14 @@ class check_yodobashi:
         html = response.read().decode('utf-8')
         
         canbuy = not '予定数の販売を終了しました' in html
+        deny = 'ご使用の環境から大量のアクセスが検出されました' in html
         
+        if deny == True:
+            print('アクセス制限中')
+            time.sleep(30)
+            continue
+        
+        wait = random.randint(10,20)
         if canbuy == 1:
             print('買え', end=' ')
         else:
@@ -22,6 +29,7 @@ class check_yodobashi:
         
         print(status, end=' ')
         print('(', now, ')', sep="")
+        print(wait)
         
-        time.sleep(2)
+        time.sleep(wait)
 
